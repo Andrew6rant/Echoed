@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "echoed",
+  "version": "${version}",
+
+  "name": "Echoed",
+  "description": "Adds a lot of new functionality to Echo shards",
+  "authors": [
+    "Andrew Grant (Andrew6rant)"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/echoed/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.Andrew6rant.echoed.Echoed"
+    ],
+    "client": [
+      "io.github.Andrew6rant.echoed.EchoedClient"
+    ]
+  },
+  "mixins": [
+    "echoed.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.19.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

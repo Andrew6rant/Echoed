@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "echoed:block/echo_glass"
+    }
+  }
+}
