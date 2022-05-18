@@ -26,7 +26,7 @@ public class Echoed implements ModInitializer {
 		Registry.register(Registry.ITEM, new Identifier("echoed", blockName), new BlockItem(block, new FabricItemSettings().group(ITEM_GROUP)));
 	}
 
-	public static final EchoGlass ECHO_GLASS = new EchoGlass(FabricBlockSettings.of(Material.BARRIER).suffocates(Echoed::never).blockVision(Echoed::never)); //.nonOpaque()
+	public static final EchoGlass ECHO_GLASS = new EchoGlass(FabricBlockSettings.of(Material.BARRIER).suffocates(Echoed::never).blockVision(Echoed::never).strength(0.0F, 1200.0F)); //.nonOpaque()
 	public static final Item ECHO_KEY = new Item(new Item.Settings());
 
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(

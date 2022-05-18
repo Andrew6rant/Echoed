@@ -4,6 +4,7 @@
   "package": "io.github.Andrew6rant.echoed.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "InGameHudMixin",
     "SwiftSneakEnchantmentMixin",
     "VoxelShapeMixin"
   ],
