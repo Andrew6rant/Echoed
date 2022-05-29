@@ -21,7 +21,7 @@ public class PetrifiedAllayBlockEntity extends BlockEntity implements IAnimatabl
 
     private <E extends BlockEntity & IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         event.getController().transitionLengthTicks = 0;
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.allay.static", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.allay.static", false));
         return PlayState.CONTINUE;
     }
 
