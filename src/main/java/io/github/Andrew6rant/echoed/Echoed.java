@@ -1,18 +1,15 @@
 package io.github.Andrew6rant.echoed;
 
 import io.github.Andrew6rant.echoed.block.EchoGlass;
-import io.github.Andrew6rant.echoed.block.PetrifiedAllayBlockEntity;
 import io.github.Andrew6rant.echoed.block.StatueBlock;
+import io.github.Andrew6rant.echoed.registry.BlockEntityRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -34,8 +31,7 @@ public class Echoed implements ModInitializer {
 
 	public static final EchoGlass ECHO_GLASS = new EchoGlass(FabricBlockSettings.of(Material.BARRIER).suffocates(Echoed::never).blockVision(Echoed::never).strength(0.0F, 1200.0F)); //.nonOpaque()
 	public static final Item ECHO_KEY = new Item(new Item.Settings());
-	public static final StatueBlock PETRIFIED_ALLAY = new StatueBlock(FabricBlockSettings.of(Material.STONE));
-	public static BlockEntityType<PetrifiedAllayBlockEntity> PETRIFIED_ALLAY_BLOCK_ENTITY;
+	public static final StatueBlock PETRIFIED_ALLAY = new StatueBlock();
 
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
 			new Identifier("echoed", "general"),
@@ -49,7 +45,7 @@ public class Echoed implements ModInitializer {
 		register(Names.ECHO_GLASS, ECHO_GLASS);
 		register(Names.ECHO_KEY, ECHO_KEY);
 		register(Names.PETRIFIED_ALLAY, PETRIFIED_ALLAY);
-		PETRIFIED_ALLAY_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "echoed:petrified_allay_block_entity", FabricBlockEntityTypeBuilder.create(PetrifiedAllayBlockEntity::new, PETRIFIED_ALLAY).build(null));
+		new BlockEntityRegistry();
 	}
 
 }
