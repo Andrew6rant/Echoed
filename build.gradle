@@ -11,7 +11,12 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	//maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+	maven {
+		url 'https://repo.sleeping.town'
+		content {
+			includeGroup 'com.unascribed'
+		}
+	}
 }
 
 dependencies {
@@ -20,7 +25,9 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	//modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19-pre3:3.1.0'
+	modApi include("com.unascribed:lib39-util:1.5.0-experimental6+1.20.1")
+	modApi include("com.unascribed:lib39-core:1.5.0-experimental6+1.20.1")
+	modApi include("com.unascribed:lib39-waypoint:1.5.0-experimental6+1.20.1")
 }
 
 processResources {

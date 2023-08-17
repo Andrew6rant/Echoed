@@ -1,12 +1,18 @@
 package io.github.Andrew6rant.echoed;
 
+import com.google.common.collect.ImmutableSet;
+import com.unascribed.lib39.core.api.AutoRegistry;
 import io.github.Andrew6rant.echoed.block.EchoGlass;
+import io.github.Andrew6rant.echoed.block.EchoGlassBlockEntity;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -19,6 +25,9 @@ import net.minecraft.world.BlockView;
 
 public class Echoed implements ModInitializer {
 	public static final String ModID = "echoed";
+
+	public static final AutoRegistry AUTOREG = AutoRegistry.of(ModID);
+
 	public static void register(String itemName, Item item) {
 		Registry.register(Registries.ITEM, new Identifier("echoed", itemName), item);
 	}
@@ -30,9 +39,11 @@ public class Echoed implements ModInitializer {
 	public static final EchoGlass ECHO_GLASS = new EchoGlass(FabricBlockSettings.copyOf(Blocks.BARRIER).suffocates(Echoed::never).blockVision(Echoed::never).strength(0.0F, 1200.0F)); //.nonOpaque()
 	public static final Item ECHO_KEY = new Item(new Item.Settings());
 
-	/*public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
-			new Identifier("echoed", "general"),
-			() -> new ItemStack(ECHO_GLASS));*/
+	public static final BlockEntityType<EchoGlassBlockEntity> ECHO_GLASS_BLOCK_ENTITY = Registry.register(
+			Registries.BLOCK_ENTITY_TYPE,
+			new Identifier(ModID, "echo_glass_block_entity"),
+			FabricBlockEntityTypeBuilder.create(EchoGlassBlockEntity::new, ECHO_GLASS).build()
+	);
 
 	public static boolean never(BlockState state, BlockView world, BlockPos pos) {
 		return false;
