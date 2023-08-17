@@ -23,13 +23,22 @@ public class EchoGlass extends AbstractGlassBlock {
     }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+        //if (context instanceof EntityShapeContext entityShapeContext) {
+        //    Entity entity = entityShapeContext.getEntity();
+        //    if (entity != null) {
+        //        if (entity.isSneaking()) {
+        //            return VoxelShapes.empty();
+        //        }
+        //    }
+        //}
+        //return VoxelShapes.fullCube();
         return context.isHolding(Echoed.ECHO_KEY) ? VoxelShapes.empty(): VoxelShapes.fullCube();
     }
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         Vec3d veloc = entity.getVelocity();
         if (entity.isSneaking()) {
-            entity.setVelocity(veloc.getX(), 0.2D, veloc.getZ());
+            entity.setVelocity(veloc.getX(), 0.3D, veloc.getZ());
         }
         else {
             entity.setVelocity(veloc.getX()/1.5D, veloc.getY(), veloc.getZ()/1.5D);

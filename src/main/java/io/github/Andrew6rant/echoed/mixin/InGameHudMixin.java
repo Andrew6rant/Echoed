@@ -1,6 +1,7 @@
 package io.github.Andrew6rant.echoed.mixin;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,7 +24,7 @@ public class InGameHudMixin {
     @Shadow @Final private static Identifier PUMPKIN_BLUR;
 
     @Shadow
-    private void renderOverlay(Identifier texture, float opacity) {
+    private void renderOverlay(DrawContext context, Identifier texture, float opacity) {
     }
 
     public InGameHudMixin(MinecraftClient client) {
@@ -31,10 +32,10 @@ public class InGameHudMixin {
     }
 
     @Inject(method = "render", at = @At(target = "Lnet/minecraft/client/network/ClientPlayerEntity;getFrozenTicks()I", value = "INVOKE"))
-    private void insertShimmerRenderer(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
+    private void insertShimmerRenderer(DrawContext context, float tickDelta, CallbackInfo ci) {
         if (client.player.hasStatusEffect(StatusEffects.SPEED)) {
             float amplifier = client.player.getStatusEffect(StatusEffects.SPEED).getAmplifier();
-            renderOverlay(PUMPKIN_BLUR, 1/amplifier); // just testing
+            renderOverlay(context, PUMPKIN_BLUR, 1/amplifier); // just testing
         }
     }
 }
